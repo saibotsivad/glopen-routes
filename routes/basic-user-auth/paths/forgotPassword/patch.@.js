@@ -49,9 +49,6 @@ export const responses = {
 }
 
 export default async request => {
-	await request.controller.password.resetUnauthorizedFinalize({
-		token: request.body?.meta?.token,
-		password: request.body?.meta?.password,
-	})
+	await request.controller.password.resetUnauthorizedFinalize(request)
 	return { status: 201 }
 }

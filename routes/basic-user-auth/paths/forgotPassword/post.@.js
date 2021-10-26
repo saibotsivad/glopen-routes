@@ -47,6 +47,6 @@ export const responses = {
 }
 
 export default async request => {
-	await request.controller.password.resetUnauthorized({ email: request.body?.meta?.email })
+	await request.controller.password.resetUnauthorized(request)
 	return { status: 201 }
 }

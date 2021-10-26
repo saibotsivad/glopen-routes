@@ -1,5 +1,5 @@
 {
-  "name": "glopen-routes",
+  "name": "@saibotsivad/glopen-routes",
   "version": "0.0.0",
   "description": "Common API routes I find myself needing frequently, in glopen format.",
   "type": "module",

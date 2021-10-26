@@ -14,13 +14,9 @@ The route handlers do not set properties on the response object, instead they wi
 - `body: Object | String | null` - The response body.
 - `json: Boolean` - The response `body` must be passed through a JSON stringify function prior to being returned.
 
-## Routes
-
-These are a handful of routes that I find myself needing quite frequently. (The `ext` property is the `glopen` default, so you don't need to set that.)
-
 You can grab as little or as many as you like, but for all routes you'll also need to grab the `shared` folder to get the schema definitions shared across all routes.
 
-### Basic User Auth
+## Basic User Auth
 
 To use in `glopen` set the route:
 
@@ -29,6 +25,7 @@ To use in `glopen` set the route:
 export default {
 	merge: [
 		{
+			// required for the models shared across routes
 			dir: './node_modules/glopen-routes/shared',
 			ext: '@',
 		},
