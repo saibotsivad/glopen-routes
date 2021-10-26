@@ -1,0 +1,30 @@
+{
+  "name": "glopen-routes",
+  "version": "0.0.0",
+  "description": "Common API routes I find myself needing frequently, in glopen format.",
+  "type": "module",
+  "scripts": {
+    "test": "uvu src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saibotsivad/glopen-routes.git"
+  },
+  "keywords": [
+    "glopen",
+    "openapi"
+  ],
+  "author": {
+    "name": "Tobias Davis",
+    "email": "tobias@davistobias.com",
+    "url": "https://davistobias.com"
+  },
+  "license": "SEE LICENSE IN LICENSE.md",
+  "bugs": {
+    "url": "https://github.com/saibotsivad/glopen-routes/issues"
+  },
+  "homepage": "https://github.com/saibotsivad/glopen-routes",
+  "devDependencies": {
+    "uvu": "^0.5.2"
+  }
+}
