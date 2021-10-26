@@ -1,5 +1,6 @@
 // This is a JSON:API error object. Description text lifted from https://jsonapi.org/format/#error-objects
-// under the CC0 1.0 Universal.
+// which is made available under the CC0 1.0 Universal.
+
 export default {
 	type: 'object',
 	properties: {
