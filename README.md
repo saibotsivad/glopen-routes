@@ -43,14 +43,14 @@ export default {
 
 The routes are:
 
-- [Details](./routes/basic-user-auth/paths/forgotPassword/post.@.js) `POST /forgotPassword` - Initiate a password reset request via sending an email.
-- [Details](./routes/basic-user-auth/paths/forgotPassword/patch.@.js) `PATCH /forgotPassword` - Use emailed single-use secret to finalize password reset.
-- [Details](./routes/basic-user-auth/paths/logout/get.@.js) `GET /logout` - Mark current cookie session as invalid.
-- [Details](./routes/basic-user-auth/paths/sessions/{sessionId}/delete.@.js) `DELETE /sessions/{sessionId}` - Mark specific cookie session as invalid.
-- [Details](./routes/basic-user-auth/paths/sessions/post.@.js) `POST /sessions` - Provide login information to create a new session.
-- [Details](./routes/basic-user-auth/paths/sessions/get.@.js) `GET /sessions` - Retrieve a list of the logged-in user's sessions.
-- [Details](./routes/basic-user-auth/paths/user/post.@.js) `POST /user` - Create a new user.
-- [Details](./routes/basic-user-auth/paths/user/get.@.js) `GET /user` - Get the user object of the logged-in user.
+- [`POST /forgotPassword`](./routes/basic-user-auth/paths/forgotPassword/post.@.js)  - Initiate a password reset request via sending an email.
+- [`PATCH /forgotPassword`](./routes/basic-user-auth/paths/forgotPassword/patch.@.js)  - Use emailed single-use secret to finalize password reset.
+- [`GET /logout`](./routes/basic-user-auth/paths/logout/get.@.js)  - Mark current cookie session as invalid.
+- [`DELETE /sessions/{sessionId}`](./routes/basic-user-auth/paths/sessions/{sessionId}/delete.@.js) - Mark specific cookie session as invalid.
+- [`POST /sessions`](./routes/basic-user-auth/paths/sessions/post.@.js)  - Provide login information to create a new session.
+- [`GET /sessions`](./routes/basic-user-auth/paths/sessions/get.@.js)  - Retrieve a list of the logged-in user's sessions.
+- [`POST /user`](./routes/basic-user-auth/paths/user/post.@.js)  - Create a new user.
+- [`GET /user`](./routes/basic-user-auth/paths/user/get.@.js)  - Get the user object of the logged-in user.
 
 ## Models
 
