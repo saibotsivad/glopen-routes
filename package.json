@@ -4,7 +4,12 @@
   "description": "Common API routes I find myself needing frequently, in glopen format.",
   "type": "module",
   "scripts": {
-    "test": "uvu src"
+    "test": "echo soon...",
+    "prebuild": "rm -rf demo && mkdir -p demo/swagger && ncp node_modules/swagger-editor-dist demo/swagger",
+    "build": "run-p build:*",
+    "build:basic-user-auth": "glopen -c ./basic-user-auth.glopen.js | ./build-demo.js basic-user-auth",
+    "postbuild": "ncp index.html demo/index.html",
+    "demo": "sirv demo --dev"
   },
   "repository": {
     "type": "git",
@@ -25,6 +30,11 @@
   },
   "homepage": "https://github.com/saibotsivad/glopen-routes",
   "devDependencies": {
-    "uvu": "^0.5.2"
+    "glopen": "^0.0.3",
+    "js-yaml": "^4.1.0",
+    "ncp": "^2.0.0",
+    "npm-run-all": "^4.1.5",
+    "sirv-cli": "^1.0.14",
+    "swagger-editor-dist": "^3.18.2"
   }
 }

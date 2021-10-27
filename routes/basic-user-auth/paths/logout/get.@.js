@@ -14,7 +14,8 @@ export const responses = {
 		description: 'The session associated with the provided cookie was revoked. No body is returned.',
 		headers: {
 			'Set-Cookie': {
-				description: 'The cookie is set with empty content and marked as expired.'
+				description: 'The cookie is set with empty content and marked as expired.',
+				schema: { type: 'string' }
 			}
 		}
 	},

@@ -12,7 +12,10 @@ export default {
 			type: 'object',
 			description: 'A "links" object.',
 			properties: {
-				about: 'A link that leads to further details about this particular occurrence of the problem.'
+				about: {
+					type: 'string',
+					description: 'A link that leads to further details about this particular occurrence of the problem.'
+				}
 			}
 		},
 		status: {

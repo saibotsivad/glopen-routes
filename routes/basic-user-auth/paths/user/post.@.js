@@ -24,7 +24,8 @@ export const responses = {
 		description: 'The user and session were created, and the user object and (optionally) session are returned.',
 		headers: {
 			'Set-Cookie': {
-				description: 'The session cookie is set.'
+				description: 'The session cookie is set.',
+				schema: { type: 'string' }
 			}
 		},
 		content: {
@@ -42,9 +43,9 @@ export const responses = {
 							}
 						}
 					}
-					}
 				}
 			}
+		}
 	},
 	default: {
 		$ref: '#/components/responses/error'

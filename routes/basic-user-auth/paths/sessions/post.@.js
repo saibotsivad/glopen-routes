@@ -43,7 +43,8 @@ export const responses = {
 		description: 'The email and password were accepted, and a session was created. No body is returned.',
 		headers: {
 			'Set-Cookie': {
-				description: 'The session cookie is returned.'
+				description: 'The session cookie is returned.',
+				schema: { type: 'string' }
 			}
 		}
 	},
@@ -51,7 +52,8 @@ export const responses = {
 		description: 'The email and password were accepted and a session was created in a `wait` state, but 2FA must be completed.',
 		headers: {
 			'Set-Cookie': {
-				description: 'The session cookie is returned.'
+				description: 'The session cookie is returned.',
+				schema: { type: 'string' }
 			}
 		},
 		content: {
