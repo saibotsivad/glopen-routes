@@ -11,8 +11,8 @@ export const responses = {
 		description: 'The session resource was fully deleted. No body is returned.',
 	},
 	default: {
-		$ref: '#/components/responses/error'
-	}
+		$ref: '#/components/responses/error',
+	},
 }
 
 export default async request => {

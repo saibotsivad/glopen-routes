@@ -5,7 +5,7 @@ export const parameters = [
 		in: 'path',
 		required: true,
 		schema: {
-			type: 'string'
-		}
-	}
+			type: 'string',
+		},
+	},
 ]

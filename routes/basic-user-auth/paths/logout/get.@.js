@@ -15,13 +15,13 @@ export const responses = {
 		headers: {
 			'Set-Cookie': {
 				description: 'The cookie is set with empty content and marked as expired.',
-				schema: { type: 'string' }
-			}
-		}
+				schema: { type: 'string' },
+			},
+		},
 	},
 	default: {
-		$ref: '#/components/responses/error'
-	}
+		$ref: '#/components/responses/error',
+	},
 }
 
 export default async request => {
@@ -29,7 +29,7 @@ export default async request => {
 	return {
 		status: 204,
 		headers: {
-			'Set-Cookie': cookie
-		}
+			'Set-Cookie': cookie,
+		},
 	}
 }

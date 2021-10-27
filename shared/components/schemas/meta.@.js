@@ -3,6 +3,6 @@ export default {
 	properties: {
 		created: {},
 		updated: {},
-		deleted: {}
-	}
+		deleted: {},
+	},
 }

@@ -19,12 +19,12 @@ export const parameters = [
 		schema: {
 			type: 'object',
 			additionalProperties: {
-				type: 'string'
+				type: 'string',
 			},
 			example: {
-				'attributes.status': 'ok'
-			}
-		}
+				'attributes.status': 'ok',
+			},
+		},
 	},
 	{
 		description: 'Sort the session list by some parameters, e.g. `sort=-meta.created`.',
@@ -32,9 +32,9 @@ export const parameters = [
 		in: 'query',
 		allowReserved: true,
 		schema: {
-			type: 'string'
-		}
-	}
+			type: 'string',
+		},
+	},
 ]
 
 export const responses = {
@@ -48,23 +48,23 @@ export const responses = {
 						data: {
 							type: 'array',
 							items: {
-								$ref: '#/components/schemas/session'
-							}
-						}
-					}
-				}
-			}
-		}
+								$ref: '#/components/schemas/session',
+							},
+						},
+					},
+				},
+			},
+		},
 	},
 	default: {
-		$ref: '#/components/responses/error'
-	}
+		$ref: '#/components/responses/error',
+	},
 }
 
 export default async request => {
 	const { sessions } = await request.controller.session.list(request)
 	return {
 		status: 200,
-		body: { data: sessions }
+		body: { data: sessions },
 	}
 }

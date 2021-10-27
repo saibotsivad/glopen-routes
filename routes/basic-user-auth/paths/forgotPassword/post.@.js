@@ -27,14 +27,14 @@ export const requestBody = {
 						properties: {
 							email: {
 								type: 'string',
-								description: 'The email address to send the password reset email to.'
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+								description: 'The email address to send the password reset email to.',
+							},
+						},
+					},
+				},
+			},
+		},
+	},
 }
 
 export const responses = {
@@ -42,8 +42,8 @@ export const responses = {
 		description: 'The password reset request was accepted, and an email sent. No body is returned.',
 	},
 	default: {
-		$ref: '#/components/responses/error'
-	}
+		$ref: '#/components/responses/error',
+	},
 }
 
 export default async request => {

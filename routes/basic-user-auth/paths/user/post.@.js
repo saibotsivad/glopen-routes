@@ -13,10 +13,10 @@ export const requestBody = {
 	content: {
 		'application/json': {
 			schema: {
-				$ref: '#/components/schemas/user'
-			}
-		}
-	}
+				$ref: '#/components/schemas/user',
+			},
+		},
+	},
 }
 
 export const responses = {
@@ -25,8 +25,8 @@ export const responses = {
 		headers: {
 			'Set-Cookie': {
 				description: 'The session cookie is set.',
-				schema: { type: 'string' }
-			}
+				schema: { type: 'string' },
+			},
 		},
 		content: {
 			'application/json': {
@@ -34,29 +34,29 @@ export const responses = {
 					type: 'object',
 					properties: {
 						data: {
-							$ref: '#/components/schemas/user'
+							$ref: '#/components/schemas/user',
 						},
 						included: {
 							type: 'array',
 							items: {
-								$ref: '#/components/schemas/session'
-							}
-						}
-					}
-				}
-			}
-		}
+								$ref: '#/components/schemas/session',
+							},
+						},
+					},
+				},
+			},
+		},
 	},
 	default: {
-		$ref: '#/components/responses/error'
-	}
+		$ref: '#/components/responses/error',
+	},
 }
 
 export default async request => {
 	const { user, cookie } = await request.controller.user.create(request)
 	const response = {
 		status: 201,
-		body: { data: user }
+		body: { data: user },
 	}
 	if (cookie) {
 		response.headers = { 'Set-Cookie': cookie }

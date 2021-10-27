@@ -24,18 +24,18 @@ export const requestBody = {
 						properties: {
 							email: {
 								type: 'string',
-								description: 'The email address associated with the user.'
+								description: 'The email address associated with the user.',
 							},
 							password: {
 								type: 'string',
-								description: 'The password used to authenticate the request.'
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+								description: 'The password used to authenticate the request.',
+							},
+						},
+					},
+				},
+			},
+		},
+	},
 }
 
 export const responses = {
@@ -44,17 +44,17 @@ export const responses = {
 		headers: {
 			'Set-Cookie': {
 				description: 'The session cookie is returned.',
-				schema: { type: 'string' }
-			}
-		}
+				schema: { type: 'string' },
+			},
+		},
 	},
 	202: {
 		description: 'The email and password were accepted and a session was created in a `wait` state, but 2FA must be completed.',
 		headers: {
 			'Set-Cookie': {
 				description: 'The session cookie is returned.',
-				schema: { type: 'string' }
-			}
+				schema: { type: 'string' },
+			},
 		},
 		content: {
 			'application/json': {
@@ -66,12 +66,12 @@ export const responses = {
 								auth: {
 									href: 'https://example.com/sessions/1234',
 									meta: {
-										expires: '2021-10-26T18:06:15.470Z'
-									}
-								}
-							}
-						}
-					}
+										expires: '2021-10-26T18:06:15.470Z',
+									},
+								},
+							},
+						},
+					},
 				},
 				schema: {
 					type: 'object',
@@ -84,29 +84,29 @@ export const responses = {
 									properties: {
 										href: {
 											type: 'string',
-											description: 'The fully qualified URL to the `PATCH` request used to complete 2FA.'
+											description: 'The fully qualified URL to the `PATCH` request used to complete 2FA.',
 										},
 										meta: {
 											type: 'object',
 											properties: {
 												expires: {
 													type: 'string',
-													description: 'The ISO-8601 formatted date at which 2FA for this session will not be accepted.'
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
+													description: 'The ISO-8601 formatted date at which 2FA for this session will not be accepted.',
+												},
+											},
+										},
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+		},
 	},
 	default: {
-		$ref: '#/components/responses/error'
-	}
+		$ref: '#/components/responses/error',
+	},
 }
 
 export default async request => {
@@ -116,8 +116,8 @@ export default async request => {
 			? 202
 			: 201,
 		headers: {
-			'Set-Cookie': cookie
-		}
+			'Set-Cookie': cookie,
+		},
 	}
 	if (auth) {
 		response.body = { links: { auth } }

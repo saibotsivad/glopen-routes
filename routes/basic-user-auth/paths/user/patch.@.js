@@ -14,10 +14,10 @@ export const requestBody = {
 	content: {
 		'application/json': {
 			schema: {
-				$ref: '#/components/schemas/user'
-			}
-		}
-	}
+				$ref: '#/components/schemas/user',
+			},
+		},
+	},
 }
 
 export const responses = {
@@ -29,22 +29,22 @@ export const responses = {
 					type: 'object',
 					properties: {
 						data: {
-							$ref: '#/components/schemas/user'
-						}
-					}
-				}
-			}
-		}
+							$ref: '#/components/schemas/user',
+						},
+					},
+				},
+			},
+		},
 	},
 	default: {
-		$ref: '#/components/responses/error'
-	}
+		$ref: '#/components/responses/error',
+	},
 }
 
 export default async request => {
 	const { user } = await request.controller.user.patch(request)
 	return {
 		status: 200,
-		body: { data: user }
+		body: { data: user },
 	}
 }

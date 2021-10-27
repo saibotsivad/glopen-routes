@@ -8,11 +8,11 @@ export default {
 					error: {
 						type: 'array',
 						items: {
-							$ref: '#/components/schemas/error'
-						}
-					}
-				}
-			}
-		}
-	}
+							$ref: '#/components/schemas/error',
+						},
+					},
+				},
+			},
+		},
+	},
 }

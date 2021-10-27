@@ -24,18 +24,18 @@ export const requestBody = {
 						properties: {
 							otp: {
 								type: 'string',
-								description: 'The OTP digits associated with the 2FA secret.'
+								description: 'The OTP digits associated with the 2FA secret.',
 							},
 							password: {
 								type: 'string',
-								description: 'The password used to log in the user.'
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+								description: 'The password used to log in the user.',
+							},
+						},
+					},
+				},
+			},
+		},
+	},
 }
 
 export const responses = {
@@ -43,8 +43,8 @@ export const responses = {
 		description: 'The OTP digits and password were accepted, and the session was marked as `ok`. No body is returned.',
 	},
 	default: {
-		$ref: '#/components/responses/error'
-	}
+		$ref: '#/components/responses/error',
+	},
 }
 
 export default async request => {

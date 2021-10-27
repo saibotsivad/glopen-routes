@@ -25,18 +25,18 @@ export const requestBody = {
 						properties: {
 							token: {
 								type: 'string',
-								description: 'The single-use token as sent in the email.'
+								description: 'The single-use token as sent in the email.',
 							},
 							password: {
 								type: 'string',
-								description: 'The new password to set for the user.'
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+								description: 'The new password to set for the user.',
+							},
+						},
+					},
+				},
+			},
+		},
+	},
 }
 
 export const responses = {
@@ -44,8 +44,8 @@ export const responses = {
 		description: 'The token and password were accepted, and the password for the user was reset. No body is returned.',
 	},
 	default: {
-		$ref: '#/components/responses/error'
-	}
+		$ref: '#/components/responses/error',
+	},
 }
 
 export default async request => {

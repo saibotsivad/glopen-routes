@@ -17,7 +17,7 @@ const writeGeneratedFiles = () => writeFile(JS_FILE, lines.join('\n'), 'utf8')
 	.then(() => import(JS_FILE))
 	.then(js => Promise.all([
 		writeFile(JSON_FILE, JSON.stringify(js.definition, undefined, 4), 'utf8'),
-		writeFile(YAML_FILE, dump(JSON.parse(JSON.stringify(js.definition))), 'utf8')
+		writeFile(YAML_FILE, dump(JSON.parse(JSON.stringify(js.definition))), 'utf8'),
 	]))
 	.then(() => readFile(join('demo', 'swagger', 'index.html'), 'utf8'))
 	.then(html => writeFile(
@@ -25,7 +25,7 @@ const writeGeneratedFiles = () => writeFile(JS_FILE, lines.join('\n'), 'utf8')
 		html
 			.replace(/\.\//g, './swagger/')
 			.replace('dom_id:', `url: "./${NAME}.yaml",\n      dom_id:`),
-		'utf8'
+		'utf8',
 	))
 
 process.stdin.setEncoding('utf8')

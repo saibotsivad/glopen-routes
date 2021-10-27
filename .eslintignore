@@ -9,3 +9,6 @@
 
 # globbed things
 globbed-*.js
+
+# built things
+/demo
