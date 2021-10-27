@@ -7,7 +7,7 @@ name: test
 
 on:
   push:
-    branches: [ 'feature/*' ]
+    branches: [ 'feature/*', 'develop', 'main' ]
 
 jobs:
   build:
