@@ -1,20 +1,42 @@
-# glopen-routes
+# Glopen Routes
 
 Some common routes that I find myself needing often, in [glopen](https://github.com/saibotsivad/glopen) format, with [JSON:API](https://jsonapi.org/) schemas.
+
+## Install
+
+The usual way:
+
+```shell
+npm install @saibotsivad/glopen-routes
+```
+
+To use with `glopen`, include the routes you want to use, and the shared parts:
+
+```js
+// glopen.config.js
+export default {
+	merge: [
+		{ dir: './node_modules/glopen-routes/shared' },
+		{ dir: './node_modules/glopen-routes/routes/basic-user-auth' },
+	],
+}
+```
+
+## Overview
 
 The route handlers are async and take a request object with a few things that need to be initialized:
 
 - `body: Object` - The request body for all these routes is JSON, so you'll need a body-parser that parses the JSON in advance.
-- `controller: Object` - The set of initialized controllers, which are essentially the functions that do the actual work, like `user.create`. Each set of routes will list the controllers it requires.
+- `controller: Object` - The set of initialized controllers, which are essentially the functions that do the actual work, like `user.create`. (Each route lists the controllers it requires.)
 
-The route handlers do not set properties on the response object, instead they will return an object with the following properties:
+Instead of setting properties on a response object, like Express etc., these route handlers return an object with the following properties:
 
 - `status: Number` - The response status code.
 - `headers: Object` - These headers should be merged with any other headers, overwriting base headers if any exist.
-- `body: Object | String | null` - The response body.
+- `body: Object | String | null` - The response body, if it exists.
 - `json: Boolean` - The response `body` must be passed through a JSON stringify function prior to being returned.
 
-You can grab as little or as many as you like, but for all routes you'll also need to grab the `shared` folder to get the schema definitions shared across all routes.
+You can grab as few or as many routes as you like, but for all routes you'll also need to grab the `shared` folder to get the schema definitions shared across all routes.
 
 ## Basic User Auth
 
