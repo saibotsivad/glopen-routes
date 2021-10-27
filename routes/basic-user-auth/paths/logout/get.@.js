@@ -25,10 +25,11 @@ export const responses = {
 }
 
 export default async request => {
+	const { cookie } = await request.controller.session.logout(request)
 	return {
 		status: 204,
 		headers: {
-			'Set-Cookie': await request.controller.session.logout(request)
+			'Set-Cookie': cookie
 		}
 	}
 }

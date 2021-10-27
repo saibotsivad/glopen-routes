@@ -62,9 +62,9 @@ export const responses = {
 }
 
 export default async request => {
-	const { user } = await request.controller.session.list(request)
+	const { sessions } = await request.controller.session.list(request)
 	return {
 		status: 200,
-		body: { data: user }
+		body: { data: sessions }
 	}
 }

@@ -38,58 +38,80 @@ export default {
 }
 ```
 
+These are the models used in request and response bodies.
+
+- [`session`](./routes/basic-user-auth/components/schemas/session.@.js)
+- [`user`](./routes/basic-user-auth/components/schemas/user.@.js)
+
 The routes are:
 
 #### [`POST /forgotPassword`](./routes/basic-user-auth/paths/forgotPassword/post.@.js)
 
 Initiate a password reset request via sending an email.
 
-Request controllers used:
-
 - `request.controller.password.resetUnauthorized: (request: Request) => null`
 
-#### next
+#### [`PATCH /forgotPassword`](./routes/basic-user-auth/paths/forgotPassword/patch.@.js)
 
-- [`PATCH /forgotPassword`](./routes/basic-user-auth/paths/forgotPassword/patch.@.js) - Use emailed single-use secret to finalize password reset.
-- [`GET /logout`](./routes/basic-user-auth/paths/logout/get.@.js) - Mark current cookie session as invalid.
-- [`DELETE /sessions/{sessionId}`](./routes/basic-user-auth/paths/sessions/{sessionId}/delete.@.js) - Mark specific cookie session as invalid.
-- [`POST /sessions`](./routes/basic-user-auth/paths/sessions/post.@.js) - Provide login information to create a new session.
-- [`GET /sessions`](./routes/basic-user-auth/paths/sessions/get.@.js) - Retrieve a list of the logged-in user's sessions.
-- [`POST /user`](./routes/basic-user-auth/paths/user/post.@.js) - Create a new user.
-- [`GET /user`](./routes/basic-user-auth/paths/user/get.@.js) - Get the user object of the logged-in user.
+Use emailed single-use secret to finalize password reset.
 
-## Models
+- `request.controller.password.resetUnauthorizedFinalize: (request: Request) => null`
 
-These are the models used in request and response bodies.
+#### [`GET /logout`](./routes/basic-user-auth/paths/logout/get.@.js)
 
-### User
+Mark current cookie session as invalid.
 
-- id
-- type = user
-- attributes
-	- status
-	- username
-	- email
-	- hashed password
-	- etc...
-- meta
-	- created
-	- updated
-	- deleted
+- `request.controller.session.logout: (request: Request) => { cookie: String }`
 
-### Session
+#### [`POST /sessions`](./routes/basic-user-auth/paths/sessions/post.@.js)
 
-- id
-- type = session
-- attributes
-	- status (approved or not yet, e.g. email, 2fa, whatever)
-	- ip address
-	- device / OS info
-	- etc...
-- meta
-	- created
-	- updated
-	- deleted
+Provide login information to create a new session.
+
+- `request.controller.session.create: (request: Request) => { cookie: String, auth?: { href: String, meta: { expires: String } }`
+
+#### [`GET /sessions`](./routes/basic-user-auth/paths/sessions/get.@.js)
+
+Retrieve a list of the logged-in user's sessions.
+
+- `request.controller.session.list: (request: Request) => { sessions: Array<Session> }`
+
+#### [`DELETE /sessions/{sessionId}`](./routes/basic-user-auth/paths/sessions/{sessionId}/delete.@.js)
+
+Mark specific cookie session as invalid.
+
+- `request.controller.session.remove: (request: Request) => null`
+
+#### [`PATCH /sessions/{sessionId}`](./routes/basic-user-auth/paths/sessions/{sessionId}/patch.@.js)
+
+Finalize login flow when 2FA is enabled.
+
+- `request.controller.session.finalize: (request: Request) => null`
+
+#### [`POST /user`](./routes/basic-user-auth/paths/user/post.@.js)
+
+Create a new user.
+
+- `request.controller.user.create: (request: Request) => { user: User, cookie?: String }`
+
+#### [`GET /user`](./routes/basic-user-auth/paths/user/get.@.js)
+
+Get the user object of the logged-in user.
+
+- `request.controller.user.get: (request: Request) => { user: User }`
+
+#### [`PATCH /user`](./routes/basic-user-auth/paths/user/patch.@.js)
+
+Sparse update of the logged-in users user object.
+
+- `request.controller.user.patch: (request: Request) => { user: User }`
+
+## Shared Models
+
+These are the models used across all routes, in request and response bodies.
+
+- [response: `error`](./shared/components/responses/error.@.js)
+- [schema: `error`](./shared/components/schemas/error.@.js)
+- [schema: `meta`](./shared/components/schemas/meta.@.js)
 
 ## License
 
