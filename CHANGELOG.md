@@ -22,6 +22,10 @@ Change categories are:
 ### Removed
 ### Security
 
+## [0.0.1] - 2021-10-27
+### Added
+- The main basic user auth related routes that I use all over the place.
+
 ## [0.0.0] - 2021-10-25
 ### Added
 - Created the base project.
