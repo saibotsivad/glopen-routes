@@ -6,16 +6,6 @@ Fetch the list of the logged-in user's sessions.
 
 export const tags = [ 'userSessions' ]
 
-export const security = [
-	{
-		cookie: [ '' ], // TODO: roles
-	},
-	{
-		// TODO should you be able to access this via API? think about each endpoint
-		api: [ '' ],
-	},
-]
-
 export const parameters = [
 	{
 		description: 'Filter the session list by some parameters, e.g. `filter[attributes.status]=ok`.',
