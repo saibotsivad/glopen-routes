@@ -6,6 +6,12 @@ Fetch the list of the logged-in user's API tokens.
 
 export const tags = [ 'userApiTokens' ]
 
+const roles = [ 'userApiToken:list:*:*:{{self.id}}:*' ]
+export const security = [
+	{ cookie: roles },
+	{ api: roles },
+]
+
 export const parameters = [
 	{
 		description: 'Filter the API token list by some parameters, e.g. `filter[attributes.status]=ok`.',

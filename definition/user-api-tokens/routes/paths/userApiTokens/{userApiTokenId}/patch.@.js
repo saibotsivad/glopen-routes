@@ -10,6 +10,12 @@ is handled by the backend.
 
 export const tags = [ 'userApiTokens' ]
 
+const roles = [ 'userApiToken:sparseUpdate:*:*:{{self.id}}:*' ]
+export const security = [
+	{ cookie: roles },
+	{ api: roles },
+]
+
 export const parameters = [
 	{ $ref: '#/components/parameters/sessionId' },
 ]

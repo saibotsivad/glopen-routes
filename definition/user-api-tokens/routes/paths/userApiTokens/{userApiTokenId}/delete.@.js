@@ -8,6 +8,12 @@ export const parameters = [
 	{ $ref: '#/components/parameters/userApiTokenId' },
 ]
 
+const roles = [ 'userApiToken:remove:*:*:{{self.id}}:*' ]
+export const security = [
+	{ cookie: roles },
+	{ api: roles },
+]
+
 export const responses = {
 	204: {
 		description: 'The users API token was fully deleted. No body is returned.',

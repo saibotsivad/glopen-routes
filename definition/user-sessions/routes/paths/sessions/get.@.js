@@ -6,6 +6,12 @@ Fetch the list of the logged-in user's sessions.
 
 export const tags = [ 'userSessions' ]
 
+const roles = [ 'session:list:*:*:{{self.id}}:*' ]
+export const security = [
+	{ cookie: roles },
+	{ api: roles },
+]
+
 export const parameters = [
 	{
 		description: 'Filter the session list by some parameters, e.g. `filter[attributes.status]=ok`.',
