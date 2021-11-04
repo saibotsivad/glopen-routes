@@ -16,14 +16,14 @@ To use with `glopen`, you can either include everything in one go, or explicitly
 
 ### Everything At Once
 
-You'll need to merge in the [shared items](./definition/shared), which are shared across all routes, and for each named definition you'll need to merge in the `openapi` and `routes` folder:
+You'll need to merge in the [shared items](./definition/_shared), which are shared across all routes, and for each named definition you'll need to merge in the `openapi` and `routes` folder:
 
 ```js
 // glopen.config.js
 export default {
 	merge: [
 		// The shared components are always required
-		{ dir: './node_modules/@saibotsivad/glopen-routes/definition/shared/openapi' },
+		{ dir: './node_modules/@saibotsivad/glopen-routes/definition/_shared/openapi' },
 		// For each named definition, the 'openapi' and 'routes'
 		{ dir: './node_modules/@saibotsivad/glopen-routes/definition/basic-user-auth/openapi' },
 		{ dir: './node_modules/@saibotsivad/glopen-routes/definition/basic-user-auth/routes' },
@@ -40,7 +40,7 @@ const folder = './node_modules/@saibotsivad/glopen-routes/definition'
 export default {
 	merge: [
 		// The shared components are always required
-		{ dir: join(folder, 'shared/openapi') },
+		{ dir: join(folder, '_shared/openapi') },
 		// For each named definition, the 'openapi' and 'routes'
 		{ dir: join(folder, 'basic-user-auth/openapi') },
 		{ dir: join(folder, 'basic-user-auth/routes') },
@@ -86,7 +86,7 @@ In your config file you'd still need to merge in the shared components and the `
 export default {
 	merge: [
 		// The shared components are still always required
-		{ dir: './node_modules/@saibotsivad/glopen-routes/definition/shared/openapi' },
+		{ dir: './node_modules/@saibotsivad/glopen-routes/definition/_shared/openapi' },
 		// For explicit imported routes, you only need to merge the `openapi` part
 		{ dir: './node_modules/@saibotsivad/glopen-routes/definition/basic-user-auth/openapi' },
 		// Then merge in your own project routes
@@ -116,15 +116,15 @@ Instead of setting properties on a response object, like Express etc., these rou
 - `body: Object | String | null` - The response body, if it exists.
 - `json: Boolean` - The response `body` must be passed through a JSON stringify function prior to being returned.
 
-You can grab as few or as many routes as you like, but for all routes you'll also need to grab the `shared` folder to get the schema definitions shared across all routes, and for explicit re-exports you'll need to grab the `openapi` folder for each named definition.
+You can grab as few or as many routes as you like, but for all routes you'll also need to grab the `_shared` folder to get the schema definitions shared across all routes, and for explicit re-exports you'll need to grab the `openapi` folder for each named definition.
 
 ## Shared Models
 
 These are the models used across all routes, in request and response bodies.
 
-- [response: `error`](./shared/components/responses/error.@.js)
-- [schema: `error`](./shared/components/schemas/error.@.js)
-- [schema: `meta`](./shared/components/schemas/meta.@.js)
+- [response: `error`](./definition/_shared/components/responses/error.@.js)
+- [schema: `error`](./definition/_shared/components/schemas/error.@.js)
+- [schema: `meta`](./definition/_shared/components/schemas/meta.@.js)
 
 ## Basic User Auth
 
@@ -136,7 +136,7 @@ export default {
 	merge: [
 		{
 			// required for the models shared across routes
-			dir: './node_modules/@saibotsivad/glopen-routes/definition/shared/openapi',
+			dir: './node_modules/@saibotsivad/glopen-routes/definition/_shared/openapi',
 			ext: '@',
 		},
 		{
@@ -157,70 +157,70 @@ export default {
 
 These are the models used in request and response bodies.
 
-- [`session`](definition/basic-user-auth/openapi/components/schemas/session.@.js)
-- [`user`](definition/basic-user-auth/openapi/components/schemas/user.@.js)
+- [`session`](definition/user-sessions/openapi/components/schemas/session.@.js)
+- [`user`](definition/user-sessions/openapi/components/schemas/user.@.js)
 
 The routes are:
 
-#### [`POST /forgotPassword`](definition/basic-user-auth/routes/paths/forgotPassword/post.@.js)
+#### [`POST /forgotPassword`](definition/user-sessions/routes/paths/forgotPassword/post.@.js)
 
 Initiate a password reset request via sending an email.
 
 - `request.controller.password.resetUnauthorized: (request: Request) => null`
 
-#### [`PATCH /forgotPassword`](definition/basic-user-auth/routes/paths/forgotPassword/patch.@.js)
+#### [`PATCH /forgotPassword`](definition/user-sessions/routes/paths/forgotPassword/patch.@.js)
 
 Use emailed single-use secret to finalize password reset.
 
 - `request.controller.password.resetUnauthorizedFinalize: (request: Request) => { cookie?: String } | undefined`
 
-#### [`GET /logout`](definition/basic-user-auth/routes/paths/logout/get.@.js)
+#### [`GET /logout`](definition/user-sessions/routes/paths/logout/get.@.js)
 
 Mark current cookie session as invalid.
 
 - `request.controller.session.logout: (request: Request) => { cookie: String }`
 
-#### [`POST /sessions`](definition/basic-user-auth/routes/paths/sessions/post.@.js)
+#### [`POST /sessions`](definition/user-sessions/routes/paths/sessions/post.@.js)
 
 Provide login information to create a new session.
 
 - `request.controller.session.create: (request: Request) => { cookie: String, auth?: { href: String, meta: { expires: String } }`
 
-#### [`GET /sessions`](definition/basic-user-auth/routes/paths/sessions/get.@.js)
+#### [`GET /sessions`](definition/user-sessions/routes/paths/sessions/get.@.js)
 
 Retrieve a list of the logged-in user's sessions.
 
 - `request.controller.session.list: (request: Request) => { sessions: Array<Session> }`
 
-#### [`DELETE /sessions/{sessionId}`](definition/basic-user-auth/routes/paths/sessions/{sessionId}/delete.@.js)
+#### [`DELETE /sessions/{sessionId}`](definition/user-sessions/routes/paths/sessions/{sessionId}/delete.@.js)
 
 Mark specific cookie session as invalid.
 
 - `request.controller.session.remove: (request: Request) => null`
 
-#### [`PATCH /sessions/{sessionId}`](definition/basic-user-auth/routes/paths/sessions/{sessionId}/patch.@.js)
+#### [`PATCH /sessions/{sessionId}`](definition/user-sessions/routes/paths/sessions/{sessionId}/patch.@.js)
 
 Finalize login flow when 2FA is enabled.
 
 - `request.controller.session.finalize: (request: Request) => null`
 
-#### [`POST /user`](definition/basic-user-auth/routes/paths/user/post.@.js)
+#### [`POST /user`](definition/user-sessions/routes/paths/user/post.@.js)
 
 Create a new user.
 
 - `request.controller.user.create: (request: Request) => { user: User, cookie?: String }`
 
-#### [`GET /user`](definition/basic-user-auth/routes/paths/user/get.@.js)
+#### [`GET /user`](definition/user-sessions/routes/paths/user/get.@.js)
 
 Get the user object of the logged-in user.
 
 - `request.controller.user.get: (request: Request) => { user: User }`
 
-#### [`PATCH /user`](definition/basic-user-auth/routes/paths/user/patch.@.js)
+#### [`PATCH /user`](definition/user-sessions/routes/paths/user/patch.@.js)
 
 Sparse update of the logged-in users user object.
 
-- `request.controller.user.patch: (request: Request) => { user: User }`
+- `request.controller.user.sparseUpdate: (request: Request) => { user: User }`
 
 ## License
 
