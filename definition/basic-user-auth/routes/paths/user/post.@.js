@@ -1,12 +1,10 @@
-import { basicUserAuth } from '../../tags.@.js'
-
 export const summary = 'Create User'
 
 export const description = `
 Create a user by providing an email address. If the user already exists, return an error.
 `
 
-export const tags = [ basicUserAuth.name ]
+export const tags = [ 'basicUserAuth' ]
 
 export const requestBody = {
 	description: 'Create a new user.',

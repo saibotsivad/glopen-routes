@@ -1,5 +1,3 @@
-import { basicUserAuth } from '../../tags.@.js'
-
 export const summary = 'Revoke Session (Log Out)'
 
 export const description = `
@@ -7,7 +5,7 @@ Logging out sets the \`session\` status as \`revoked\`, and returns a \`Set-Cook
 marks the cookie as expired and sets its content to empty.
 `
 
-export const tags = [ basicUserAuth.name ]
+export const tags = [ 'basicUserAuth' ]
 
 export const responses = {
 	204: {

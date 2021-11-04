@@ -1,5 +1,3 @@
-import { basicUserAuth } from '../../tags.@.js'
-
 export const summary = 'Update User'
 
 export const description = `
@@ -7,14 +5,19 @@ Sparse update of the logged in users own \`user\` resource. Some properties are 
 updated on this request, for example \`attributes.verified\` and other security related properties.
 `
 
-export const tags = [ basicUserAuth.name ]
+export const tags = [ 'basicUserAuth' ]
 
 export const requestBody = {
 	description: 'Update the currently logged in user.',
 	content: {
 		'application/json': {
 			schema: {
-				$ref: '#/components/schemas/user',
+				type: 'object',
+				properties: {
+					data: {
+						$ref: '#/components/schemas/user',
+					},
+				},
 			},
 		},
 	},

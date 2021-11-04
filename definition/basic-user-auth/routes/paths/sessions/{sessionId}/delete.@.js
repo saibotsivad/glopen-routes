@@ -1,10 +1,12 @@
-import { basicUserAuth } from '../../../tags.@.js'
-
 export const summary = 'Delete Session'
 
 export const description = 'Fully delete a session by identifier.'
 
-export const tags = [ basicUserAuth.name ]
+export const tags = [ 'basicUserAuth' ]
+
+export const parameters = [
+	{ $ref: '#/components/parameters/sessionId' },
+]
 
 export const responses = {
 	204: {

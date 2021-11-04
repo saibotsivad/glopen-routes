@@ -1,12 +1,10 @@
-import { basicUserAuth } from '../../tags.@.js'
-
 export const summary = 'Get User'
 
 export const description = `
-Fetch the logged-in user's \`user\` resource, authenticating using the session cookie.
+Fetch the logged-in user's \`user\` resource, authenticating with the session cookie.
 `
 
-export const tags = [ basicUserAuth.name ]
+export const tags = [ 'basicUserAuth' ]
 
 export const responses = {
 	200: {

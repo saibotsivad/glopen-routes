@@ -1,12 +1,10 @@
-import { basicUserAuth } from '../../tags.@.js'
-
 export const summary = 'Get User Sessions'
 
 export const description = `
 Fetch the list of the logged-in user's sessions.
 `
 
-export const tags = [ basicUserAuth.name ]
+export const tags = [ 'basicUserAuth' ]
 
 export const parameters = [
 	{

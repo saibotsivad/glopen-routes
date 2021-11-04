@@ -1,17 +1,16 @@
-import { basicUserAuth } from '../../tags.@.js'
-
 export const summary = 'Create Session (Log In)'
 
 export const description = `
-Attempt to create a fully approved session using a provided email and password. A successful response
-will also return a \`Set-Cookie\` header. If 2FA is enabled, the response body will indicate that, and
-finalization will use the \`PATCH /sessions/{sessionId}\` route.
+Attempt to create a fully approved session using a provided username (which can be an email,
+if the system allows) and a password. A successful response will also return a \`Set-Cookie\`
+header. If 2FA is enabled, the response body will indicate that, and finalization will use
+the \`PATCH /sessions/{sessionId}\` route.
 `
 
-export const tags = [ basicUserAuth.name ]
+export const tags = [ 'basicUserAuth' ]
 
 export const requestBody = {
-	description: 'Create a session using email and password.',
+	description: 'Create a session using a username/email and password.',
 	content: {
 		'application/json': {
 			schema: {
@@ -20,11 +19,11 @@ export const requestBody = {
 				properties: {
 					meta: {
 						type: 'object',
-						required: [ 'email', 'password' ],
+						required: [ 'username', 'password' ],
 						properties: {
-							email: {
+							username: {
 								type: 'string',
-								description: 'The email address associated with the user.',
+								description: 'The username (or email address) associated with the user.',
 							},
 							password: {
 								type: 'string',
@@ -39,8 +38,8 @@ export const requestBody = {
 }
 
 export const responses = {
-	201: {
-		description: 'The email and password were accepted, and a session was created. No body is returned.',
+	204: {
+		description: 'The username/email and password were accepted, and a session was created. No body is returned.',
 		headers: {
 			'Set-Cookie': {
 				description: 'The session cookie is returned.',
@@ -49,7 +48,7 @@ export const responses = {
 		},
 	},
 	202: {
-		description: 'The email and password were accepted and a session was created in a `wait` state, but 2FA must be completed.',
+		description: 'The username/email and password were accepted and a session was created in a `wait` state, but 2FA must be completed.',
 		headers: {
 			'Set-Cookie': {
 				description: 'The session cookie is returned.',
@@ -114,7 +113,7 @@ export default async request => {
 	const response = {
 		status: auth
 			? 202
-			: 201,
+			: 204,
 		headers: {
 			'Set-Cookie': cookie,
 		},
