@@ -16,7 +16,22 @@ To use with `glopen`, you can either include everything in one go, or explicitly
 
 ### Everything At Once
 
-You'll need to merge in the [shared items](./definition/_shared), which are shared across all routes, and for each named definition you'll need to merge in the `openapi` and `routes` folder:
+You can use the convenience function, which returns a list of all the definitions, ready for use by `glopen`:
+
+```js
+// glopen.config.js
+import { all } from '@saibotsivad/glopen-routes'
+export default {
+	merge: [
+		...all({
+			// Optional: apply the `api` option to everything.
+			api: '/api/v1'
+		})
+	]
+}
+```
+
+If you do it manually you'll need to merge in the [shared items](./definition/_shared), which are shared across all routes, and for each named definition you'll need to merge in the `openapi` and `routes` folder:
 
 ```js
 // glopen.config.js
@@ -31,24 +46,25 @@ export default {
 }
 ```
 
-For copy+paste convenience, here's an alternate way that's a little cleaner if you have more to import:
+### Explicit Import
+
+You can use the convenience function per-definition, which returns a list of the parts, ready for use by `glopen`.
+
+You will need to include `shared` as well, for example:
 
 ```js
 // glopen.config.js
-import { join } from 'node:path'
-const folder = './node_modules/@saibotsivad/glopen-routes/definition'
+import { shared, singleUser } from '@saibotsivad/glopen-routes'
 export default {
 	merge: [
-		// The shared components are always required
-		{ dir: join(folder, '_shared/openapi') },
-		// For each named definition, the 'openapi' and 'routes'
-		{ dir: join(folder, 'basic-user-auth/openapi') },
-		{ dir: join(folder, 'basic-user-auth/routes') },
-	],
+		...shared(),
+		...singleUser({
+			// Optional: apply the `api` option to everything.
+			api: '/api/v1'
+		})
+	]
 }
 ```
-
-### Explicit Import
 
 If you want to be explicit about each Operation Object that you bring in to your project, or if you want to rename the paths entirely, you can create a file and import->export the route, overwriting the bits that you want.
 
