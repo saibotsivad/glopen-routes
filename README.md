@@ -122,105 +122,228 @@ You can grab as few or as many routes as you like, but for all routes you'll als
 
 These are the models used across all routes, in request and response bodies.
 
+- [parameter: `filter`](./definition/_shared/components/parameters/filter.@.js)
+- [parameter: `sort`](./definition/_shared/components/parameters/sort.@.js)
 - [response: `error`](./definition/_shared/components/responses/error.@.js)
 - [schema: `error`](./definition/_shared/components/schemas/error.@.js)
+- [schema: `errorBody`](./definition/_shared/components/schemas/errorBody.@.js)
 - [schema: `meta`](./definition/_shared/components/schemas/meta.@.js)
+- [security scheme: `api`](./definition/_shared/components/securitySchemes/api.@.js)
+- [security scheme: `cookie`](./definition/_shared/components/securitySchemes/cookie.@.js)
 
-## Basic User Auth
+## Single User
 
-To use in `glopen` set the route:
+These are routes dealing with a users own self, as opposed to routes dealing with other users.
+
+To use in `glopen`:
 
 ```js
 // glopen.config.js
+import { shared, singleUser } from '@saibotsivad/glopen-routes'
 export default {
 	merge: [
-		{
-			// required for the models shared across routes
-			dir: './node_modules/@saibotsivad/glopen-routes/definition/_shared/openapi',
-			ext: '@',
-		},
-		{
-			// required for the basic-user-auth routes
-			dir: './node_modules/@saibotsivad/glopen-routes/definition/basic-user-auth/openapi',
-			ext: '@',
-		},
-		{
-			// merge all basic-user-auth routes
-			dir: './node_modules/@saibotsivad/glopen-routes/definition/basic-user-auth/routes',
-			// your api path prefix (optional)
-			api: '/api/v1/auth',
-			ext: '@',
-		},
+		...shared(),
+		...singleUser({
+			api: '/api/v1' // optional
+		})
 	],
 }
 ```
 
-These are the models used in request and response bodies.
+The components are:
 
-- [`session`](definition/user-sessions/openapi/components/schemas/session.@.js)
-- [`user`](definition/user-sessions/openapi/components/schemas/user.@.js)
+- [`schema: user`](definition/single-user/openapi/components/schemas/user.@.js)
+- [`tag: singleUser`](definition/single-user/openapi/tags.@.js)
 
 The routes are:
 
-#### [`POST /forgotPassword`](definition/user-sessions/routes/paths/forgotPassword/post.@.js)
-
-Initiate a password reset request via sending an email.
-
-- `request.controller.password.resetUnauthorized: (request: Request) => null`
-
-#### [`PATCH /forgotPassword`](definition/user-sessions/routes/paths/forgotPassword/patch.@.js)
-
-Use emailed single-use secret to finalize password reset.
-
-- `request.controller.password.resetUnauthorizedFinalize: (request: Request) => { cookie?: String } | undefined`
-
-#### [`GET /logout`](definition/user-sessions/routes/paths/logout/get.@.js)
-
-Mark current cookie session as invalid.
-
-- `request.controller.session.logout: (request: Request) => { cookie: String }`
-
-#### [`POST /sessions`](definition/user-sessions/routes/paths/sessions/post.@.js)
-
-Provide login information to create a new session.
-
-- `request.controller.session.create: (request: Request) => { cookie: String, auth?: { href: String, meta: { expires: String } }`
-
-#### [`GET /sessions`](definition/user-sessions/routes/paths/sessions/get.@.js)
-
-Retrieve a list of the logged-in user's sessions.
-
-- `request.controller.session.list: (request: Request) => { sessions: Array<Session> }`
-
-#### [`DELETE /sessions/{sessionId}`](definition/user-sessions/routes/paths/sessions/{sessionId}/delete.@.js)
-
-Mark specific cookie session as invalid.
-
-- `request.controller.session.remove: (request: Request) => null`
-
-#### [`PATCH /sessions/{sessionId}`](definition/user-sessions/routes/paths/sessions/{sessionId}/patch.@.js)
-
-Finalize login flow when 2FA is enabled.
-
-- `request.controller.session.finalize: (request: Request) => null`
-
-#### [`POST /user`](definition/user-sessions/routes/paths/user/post.@.js)
+##### [`POST /user`](definition/single-user/routes/paths/user/post.@.js)
 
 Create a new user.
 
 - `request.controller.user.create: (request: Request) => { user: User, cookie?: String }`
 
-#### [`GET /user`](definition/user-sessions/routes/paths/user/get.@.js)
+##### [`GET /self`](definition/single-user/routes/paths/self/get.@.js)
 
 Get the user object of the logged-in user.
 
 - `request.controller.user.get: (request: Request) => { user: User }`
 
-#### [`PATCH /user`](definition/user-sessions/routes/paths/user/patch.@.js)
+##### [`PATCH /self`](definition/single-user/routes/paths/self/patch.@.js)
 
 Sparse update of the logged-in users user object.
 
 - `request.controller.user.sparseUpdate: (request: Request) => { user: User }`
+
+## User API Tokens
+
+These routes manage tokens that are owned by a single user, as opposed to being owned by an organization or team.
+
+To use in `glopen`:
+
+```js
+// glopen.config.js
+import { shared, userApiTokens } from '@saibotsivad/glopen-routes'
+export default {
+	merge: [
+		...shared(),
+		...userApiTokens({
+			api: '/api/v1' // optional
+		})
+	],
+}
+```
+
+The components are:
+
+- [`parameter: userApiTokenId`](definition/user-api-tokens/openapi/components/parameters/userApiTokenId.@.js)
+- [`schema: userApiToken`](definition/user-api-tokens/openapi/components/schemas/userApiToken.@.js)
+- [`tag: userApiTokens`](definition/user-api-tokens/openapi/tags.@.js)
+
+The routes are:
+
+##### [`POST /userApiTokens`](definition/user-api-tokens/routes/paths/userApiTokens/post.@.js)
+
+Create a new API token, which will be managed by the requesting user.
+
+The token secret is generated by the server, and is returned as a separate property, visible only one time on this response.
+
+- `request.controller.userApiToken.create: (request: Request) => { userApiToken: UserApiToken, secret: String }`
+
+##### [`GET /userApiTokens`](definition/user-api-tokens/routes/paths/userApiTokens/get.@.js)
+
+Fetch the list of API tokens owned by the requesting user.
+
+- `request.controller.userApiToken.list: (request: Request) => { userApiTokens: Array<UserApiTokens> }`
+
+##### [`DELETE /userApiTokens/{userApiTokenId}`](definition/user-api-tokens/routes/paths/userApiTokens/{userApiTokenId}/delete.@.js)
+
+Delete an API token owned by the requesting user.
+
+- `request.controller.userApiToken.remove: (request: Request) => null`
+
+##### [`PATCH /userApiTokens/{userApiTokenId}`](definition/user-api-tokens/routes/paths/userApiTokens/{userApiTokenId}/patch.@.js)
+
+Sparse update to an API token owned by the requesting user.
+
+The token secret is generated by the server, and is returned as a separate property, visible only one time on this response.
+
+- `request.controller.userApiToken.sparseUpdate: (request: Request) => { userApiToken: UserApiToken, secret: String }`
+
+## User Management
+
+Routes for the management of other users.
+
+> **Note:** these routes make use of the [single-user `user` model](definition/single-user/openapi/components/schemas/user.@.js). This assumes that you will also be using those routes as well. If not, you'll need to do your own manual juggling to import only the `user` model.
+
+To use in `glopen`:
+
+```js
+// glopen.config.js
+import { shared, userManagement } from '@saibotsivad/glopen-routes'
+export default {
+	merge: [
+		...shared(),
+		...userManagement({
+			api: '/api/v1' // optional
+		})
+	],
+}
+```
+
+The components are:
+
+- [`parameter: userId`](definition/user-management/openapi/components/parameters/userId.@.js)
+- [`tag: userManagement`](definition/user-management/openapi/tags.@.js)
+
+The routes are:
+
+##### [`GET /users`](definition/user-management/routes/paths/users/get.@.js)
+
+Get a list of users.
+
+- `request.controller.user.list: (request: Request) => { users: Array<User> }`
+
+##### [`GET /users/{userId}`](definition/user-management/routes/paths/users/{userId}/get.@.js)
+
+Get an individual user.
+
+- `request.controller.user.get: (request: Request) => { user: User }`
+
+##### [`PATCH /users/{userId}`](definition/user-management/routes/paths/users/{userId}/patch.@.js)
+
+Sparse update of an individual user.
+
+- `request.controller.user.sparseUpdate: (request: Request) => { user: User }`
+
+## User Sessions
+
+These routes manage a users sessions, e.g. when they log in via the webapp.
+
+To use in `glopen`:
+
+```js
+// glopen.config.js
+import { shared, userSessions } from '@saibotsivad/glopen-routes'
+export default {
+	merge: [
+		...shared(),
+		...userSessions({
+			api: '/api/v1' // optional
+		})
+	],
+}
+```
+
+The components are:
+
+- [`parameter: sessionId`](definition/user-sessions/openapi/components/parameters/sessionId.@.js)
+- [`schema: session`](definition/user-sessions/openapi/components/schemas/session.@.js)
+- [`tag: userSessions`](definition/user-sessions/openapi/tags.@.js)
+
+The routes are:
+
+##### [`POST /forgotPassword`](definition/user-sessions/routes/paths/forgotPassword/post.@.js)
+
+Initiate a password reset request via sending an email.
+
+- `request.controller.password.resetUnauthorized: (request: Request) => null`
+
+##### [`PATCH /forgotPassword`](definition/user-sessions/routes/paths/forgotPassword/patch.@.js)
+
+Use emailed single-use secret to finalize password reset.
+
+- `request.controller.password.resetUnauthorizedFinalize: (request: Request) => { cookie?: String } | undefined`
+
+##### [`GET /logout`](definition/user-sessions/routes/paths/logout/get.@.js)
+
+Mark current cookie session as invalid.
+
+- `request.controller.session.logout: (request: Request) => { cookie: String }`
+
+##### [`POST /sessions`](definition/user-sessions/routes/paths/sessions/post.@.js)
+
+Provide login information to create a new session.
+
+- `request.controller.session.create: (request: Request) => { cookie: String, auth?: { href: String, meta: { expires: String } }`
+
+##### [`GET /sessions`](definition/user-sessions/routes/paths/sessions/get.@.js)
+
+Retrieve a list of the logged-in user's sessions.
+
+- `request.controller.session.list: (request: Request) => { sessions: Array<Session> }`
+
+##### [`DELETE /sessions/{sessionId}`](definition/user-sessions/routes/paths/sessions/{sessionId}/delete.@.js)
+
+Mark specific cookie session as invalid.
+
+- `request.controller.session.remove: (request: Request) => null`
+
+##### [`PATCH /sessions/{sessionId}`](definition/user-sessions/routes/paths/sessions/{sessionId}/patch.@.js)
+
+Finalize login flow when 2FA is enabled.
+
+- `request.controller.session.finalize: (request: Request) => null`
 
 ## License
 

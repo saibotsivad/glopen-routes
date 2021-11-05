@@ -85,6 +85,12 @@ export const responses = {
 }
 
 export default async request => {
-	await request.controller.userApiToken.sparseUpdate(request)
-	return { status: 204 }
+	const { userApiToken, secret } = await request.controller.userApiToken.sparseUpdate(request)
+	return {
+		status: 200,
+		body: {
+			data: userApiToken,
+			meta: { secret },
+		},
+	}
 }

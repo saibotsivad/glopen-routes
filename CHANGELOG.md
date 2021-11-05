@@ -24,8 +24,9 @@ Change categories are:
 
 ## [0.0.2] - 2021-11-04
 ### Added
-- Security blocks with roles for each endpoint.
+- Security blocks for each endpoint.
 - Routes to handle management of API tokens.
+- Routes to handle managing users.
 ### Changed
 - BREAKING CHANGE: The paths changed, so that you can more easily re-export routes, making it possible to pick single Operation Objects instead of all.
 

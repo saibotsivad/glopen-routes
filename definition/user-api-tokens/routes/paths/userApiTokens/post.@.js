@@ -64,9 +64,12 @@ export const responses = {
 }
 
 export default async request => {
-	const { userApiToken } = await request.controller.userApiToken.create(request)
+	const { userApiToken, secret } = await request.controller.userApiToken.create(request)
 	return {
 		status: 201,
-		body: { data: userApiToken },
+		body: {
+			data: userApiToken,
+			meta: { secret },
+		},
 	}
 }
