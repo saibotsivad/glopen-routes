@@ -6,10 +6,9 @@ Fetch the list of the logged-in user's sessions.
 
 export const tags = [ 'userSessions' ]
 
-const roles = [ 'session:list:*:*:{{self.id}}:*' ]
 export const security = [
-	{ cookie: roles },
-	{ api: roles },
+	{ cookie: [] },
+	{ api: [] },
 ]
 
 export const parameters = [

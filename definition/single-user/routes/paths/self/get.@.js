@@ -6,10 +6,9 @@ Fetch the logged-in user's \`user\` resource, authenticating with the session co
 
 export const tags = [ 'singleUser' ]
 
-const roles = [ 'user:get:*:*:*:{{self.id}}' ]
 export const security = [
-	{ cookie: roles },
-	{ api: roles },
+	{ cookie: [] },
+	{ api: [] },
 ]
 
 export const responses = {

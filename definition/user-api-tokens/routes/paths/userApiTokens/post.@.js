@@ -7,10 +7,9 @@ can be used for programmatic access to API endpoints which allow ie.
 
 export const tags = [ 'userApiTokens' ]
 
-const roles = [ 'userApiToken:create:*:*:{{self.id}}:*' ]
 export const security = [
-	{ cookie: roles },
-	{ api: roles },
+	{ cookie: [] },
+	{ api: [] },
 ]
 
 export const requestBody = {

@@ -8,10 +8,9 @@ export const parameters = [
 	{ $ref: '#/components/parameters/userApiTokenId' },
 ]
 
-const roles = [ 'userApiToken:remove:*:*:{{self.id}}:*' ]
 export const security = [
-	{ cookie: roles },
-	{ api: roles },
+	{ cookie: [] },
+	{ api: [] },
 ]
 
 export const responses = {

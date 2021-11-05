@@ -1,10 +1,10 @@
-export const summary = 'Get User API Tokens'
+export const summary = 'Get User List'
 
 export const description = `
-Fetch the list of the logged-in user's API tokens.
+Fetch the list of all users available to the requesting user.
 `
 
-export const tags = [ 'userApiTokens' ]
+export const tags = [ 'userManagement' ]
 
 export const security = [
 	{ cookie: [] },
@@ -18,7 +18,7 @@ export const parameters = [
 
 export const responses = {
 	200: {
-		description: 'The filtered list of the users API tokens.',
+		description: 'The filtered list of users.',
 		content: {
 			'application/json': {
 				schema: {
@@ -27,7 +27,7 @@ export const responses = {
 						data: {
 							type: 'array',
 							items: {
-								$ref: '#/components/schemas/userApiToken',
+								$ref: '#/components/schemas/user',
 							},
 						},
 					},
@@ -41,9 +41,9 @@ export const responses = {
 }
 
 export default async request => {
-	const { userApiTokens } = await request.controller.userApiToken.list(request)
+	const { users } = await request.controller.user.list(request)
 	return {
 		status: 200,
-		body: { data: userApiTokens },
+		body: { data: users },
 	}
 }

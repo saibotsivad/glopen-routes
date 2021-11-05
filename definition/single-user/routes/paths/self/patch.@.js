@@ -7,10 +7,9 @@ updated on this request, for example \`attributes.verified\` and other security 
 
 export const tags = [ 'singleUser' ]
 
-const roles = [ 'user:sparseUpdate:*:*:*:{{self.id}}' ]
 export const security = [
-	{ cookie: roles },
-	{ api: roles },
+	{ cookie: [] },
+	{ api: [] },
 ]
 
 export const requestBody = {

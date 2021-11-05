@@ -10,14 +10,13 @@ is handled by the backend.
 
 export const tags = [ 'userApiTokens' ]
 
-const roles = [ 'userApiToken:sparseUpdate:*:*:{{self.id}}:*' ]
 export const security = [
-	{ cookie: roles },
-	{ api: roles },
+	{ cookie: [] },
+	{ api: [] },
 ]
 
 export const parameters = [
-	{ $ref: '#/components/parameters/sessionId' },
+	{ $ref: '#/components/parameters/userApiTokenId' },
 ]
 
 export const requestBody = {

@@ -4,10 +4,9 @@ export const description = 'Fully delete a session by identifier.'
 
 export const tags = [ 'userSessions' ]
 
-const roles = [ 'session:remove:*:*:{{self.id}}:*' ]
 export const security = [
-	{ cookie: roles },
-	{ api: roles },
+	{ cookie: [] },
+	{ api: [] },
 ]
 
 export const parameters = [

@@ -9,12 +9,6 @@ the \`PATCH /sessions/{sessionId}\` route.
 
 export const tags = [ 'userSessions' ]
 
-const roles = [ 'session:create:*:*:*:*' ]
-export const security = [
-	{ cookie: roles },
-	{ api: roles },
-]
-
 export const requestBody = {
 	description: 'Create a session using a username/email and password.',
 	content: {

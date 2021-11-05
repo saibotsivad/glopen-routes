@@ -7,7 +7,7 @@
     "test": "eslint \"**/*.js\"",
     "prebuild": "rm -rf demo && mkdir -p demo/swagger && ncp node_modules/swagger-editor-dist demo/swagger",
     "build": "run-p build:*",
-    "build:basic-user-auth": "glopen -c ./basic-user-auth.glopen.js | ./build-demo.js basic-user-auth",
+    "build:all": "glopen -c ./config-all.glopen.js | ./build-demo.js all",
     "postbuild": "ncp index.html demo/index.html",
     "demo": "sirv demo --dev"
   },
