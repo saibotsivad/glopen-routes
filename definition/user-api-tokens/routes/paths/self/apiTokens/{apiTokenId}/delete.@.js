@@ -5,7 +5,7 @@ export const description = 'Fully delete an API token owned by a user.'
 export const tags = [ 'userApiTokens' ]
 
 export const parameters = [
-	{ $ref: '#/components/parameters/userApiTokenId' },
+	{ $ref: '#/components/parameters/apiTokenId' },
 ]
 
 export const security = [
@@ -15,7 +15,7 @@ export const security = [
 
 export const responses = {
 	204: {
-		description: 'The users API token was fully deleted. No body is returned.',
+		description: 'The API token was fully deleted. No body is returned.',
 	},
 	default: {
 		$ref: '#/components/responses/error',
@@ -23,6 +23,6 @@ export const responses = {
 }
 
 export default async request => {
-	await request.controller.userApiToken.remove(request)
+	await request.controller.apiToken.remove(request)
 	return { status: 204 }
 }

@@ -17,7 +17,7 @@ export const requestBody = {
 	content: {
 		'application/json': {
 			schema: {
-				$ref: '#/components/schemas/userApiToken',
+				$ref: '#/components/schemas/apiToken',
 			},
 		},
 	},
@@ -25,14 +25,14 @@ export const requestBody = {
 
 export const responses = {
 	201: {
-		description: 'The API token was successfully created for the user.',
+		description: 'The API token was successfully created.',
 		content: {
 			'application/json': {
 				schema: {
 					type: 'object',
 					properties: {
 						data: {
-							$ref: '#/components/schemas/userApiToken',
+							$ref: '#/components/schemas/apiToken',
 						},
 						meta: {
 							type: 'object',
@@ -64,11 +64,11 @@ export const responses = {
 }
 
 export default async request => {
-	const { userApiToken, secret } = await request.controller.userApiToken.create(request)
+	const { apiToken, secret } = await request.controller.apiToken.create(request)
 	return {
 		status: 201,
 		body: {
-			data: userApiToken,
+			data: apiToken,
 			meta: { secret },
 		},
 	}

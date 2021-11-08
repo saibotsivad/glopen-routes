@@ -16,7 +16,7 @@ export const security = [
 ]
 
 export const parameters = [
-	{ $ref: '#/components/parameters/userApiTokenId' },
+	{ $ref: '#/components/parameters/apiTokenId' },
 ]
 
 export const requestBody = {
@@ -27,7 +27,7 @@ export const requestBody = {
 				type: 'object',
 				properties: {
 					data: {
-						$ref: '#/components/schemas/userApiToken',
+						$ref: '#/components/schemas/apiToken',
 					},
 					meta: {
 						type: 'object',
@@ -53,7 +53,7 @@ export const responses = {
 					type: 'object',
 					properties: {
 						data: {
-							$ref: '#/components/schemas/userApiToken',
+							$ref: '#/components/schemas/apiToken',
 						},
 						meta: {
 							type: 'object',
@@ -85,11 +85,11 @@ export const responses = {
 }
 
 export default async request => {
-	const { userApiToken, secret } = await request.controller.userApiToken.sparseUpdate(request)
+	const { apiToken, secret } = await request.controller.apiToken.sparseUpdate(request)
 	return {
 		status: 200,
 		body: {
-			data: userApiToken,
+			data: apiToken,
 			meta: { secret },
 		},
 	}

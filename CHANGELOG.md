@@ -22,6 +22,12 @@ Change categories are:
 ### Removed
 ### Security
 
+## [0.0.3] - 2021-11-08
+### Added
+- Routes for handling tasks and task groupings, owned by a single user.
+### Changed
+- BREAKING CHANGE: The paths changed so that resources owned by a single user are under `/self/*` for easier management.
+
 ## [0.0.2] - 2021-11-04
 ### Added
 - Security blocks for each endpoint.

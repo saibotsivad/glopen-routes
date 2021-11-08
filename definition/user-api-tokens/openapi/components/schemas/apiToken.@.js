@@ -1,5 +1,6 @@
 export default {
-	description: 'A token used for programmatic access to the API, owned and managed by a single user.',
+	// TODO when adding the account/team API token routes, need to update description
+	description: 'A token used for programmatic access to the API. Tokens can be owned and managed by individual users.',
 	type: 'object',
 	properties: {
 		id: {
@@ -7,7 +8,7 @@ export default {
 		},
 		type: {
 			type: 'string',
-			enum: [ 'userApiToken' ],
+			enum: [ 'apiToken' ],
 		},
 		meta: {
 			$ref: '#/components/schemas/meta',
@@ -17,14 +18,14 @@ export default {
 			properties: {
 				secret: {
 					description: `
-						The hashed and salted secret, used to authenticate the API requests. This
-						property **must not** be returned on any API calls, instead the plaintext
-						original secret is **only** returned on the \`meta\` property of the overall
-						request, either during the \`POST\` to create it, or the \`PATCH\` to update
-						it, when the update requests the secret to be rotated.
+The hashed and salted secret, used to authenticate the API requests. This
+property **must not** be returned on any API calls, instead the plaintext
+original secret is **only** returned on the \`meta\` property of the overall
+request, either during the \`POST\` to create it, or the \`PATCH\` to update
+it, when the update requests the secret to be rotated.
 
-						Note that there is no universal standard for the format, but most tooling
-						will understand t\`$algorithm$parameters$salt$output\`.`,
+Note that there is no universal standard for the format, but most tooling
+will understand the format \`$algorithm$parameters$salt$output\`.`,
 					type: 'string',
 				},
 				name: {
