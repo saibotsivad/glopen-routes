@@ -19,6 +19,7 @@ export const singleUser = options => make('single-user', options)
 export const userApiTokens = options => make('user-api-tokens', options)
 export const userManagement = options => make('user-management', options)
 export const userSessions = options => make('user-sessions', options)
+export const userTasks = options => make('user-tasks', options)
 
 export const all = options => ([
 	...shared(),
@@ -26,4 +27,5 @@ export const all = options => ([
 	...userApiTokens(options),
 	...userManagement(options),
 	...userSessions(options),
+	...userTasks(options),
 ])
