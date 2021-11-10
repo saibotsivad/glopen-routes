@@ -4,12 +4,14 @@ import { join } from 'node:path'
 import { readFile, writeFile } from 'node:fs/promises'
 import { EOL } from 'node:os'
 import { dump } from 'js-yaml'
+import { compile } from 'ajv-openapi-compile'
 
 const NAME = process.argv.slice(2)
 const HTML_FILE = './' + join('demo', `${NAME}.html`)
 const JS_FILE = './' + join('demo', `${NAME}.js`)
 const JSON_FILE = './' + join('demo', `${NAME}.json`)
 const YAML_FILE = './' + join('demo', `${NAME}.yaml`)
+const AJV_FILE = './' + join('demo', `${NAME}-ajv.cjs`)
 
 const lines = []
 
@@ -18,6 +20,7 @@ const writeGeneratedFiles = () => writeFile(JS_FILE, lines.join('\n'), 'utf8')
 	.then(js => Promise.all([
 		writeFile(JSON_FILE, JSON.stringify(js.definition, undefined, 4), 'utf8'),
 		writeFile(YAML_FILE, dump(JSON.parse(JSON.stringify(js.definition))), 'utf8'),
+		compile(js.definition).then(({ code }) => writeFile(AJV_FILE, code, 'utf8')),
 	]))
 	.then(() => readFile(join('demo', 'swagger', 'index.html'), 'utf8'))
 	.then(html => writeFile(
