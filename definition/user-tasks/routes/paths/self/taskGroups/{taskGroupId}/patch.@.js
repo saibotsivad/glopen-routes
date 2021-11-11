@@ -46,6 +46,9 @@ export const responses = {
 }
 
 export default async request => {
-	await request.controller.taskGroup.sparseUpdate(request)
-	return { status: 204 }
+	const { taskGroup } = await request.controller.taskGroup.sparseUpdate(request)
+	return {
+		status: 200,
+		body: { data: taskGroup },
+	}
 }

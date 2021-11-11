@@ -46,6 +46,9 @@ export const responses = {
 }
 
 export default async request => {
-	await request.controller.task.sparseUpdate(request)
-	return { status: 204 }
+	const { task } = await request.controller.task.sparseUpdate(request)
+	return {
+		status: 200,
+		body: { data: task },
+	}
 }
