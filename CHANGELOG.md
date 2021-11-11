@@ -22,7 +22,7 @@ Change categories are:
 ### Removed
 ### Security
 
-## [0.0.3-0.0.5] - 2021-11-10
+## [0.0.3-0.0.6] - 2021-11-10
 ### Added
 - Routes for handling tasks and task groupings, owned by a single user.
 - Using an AJV schema compiler tool to make sure schemas are defined correctly.
@@ -46,7 +46,7 @@ Change categories are:
 - Created the base project.
 
 [Unreleased]: https://github.com/saibotsivad/glopen-routes/compare/v0.0.0...HEAD
-[0.0.3-0.0.5]: https://github.com/saibotsivad/glopen-routes/compare/v0.0.2...v0.0.5
+[0.0.3-0.0.6]: https://github.com/saibotsivad/glopen-routes/compare/v0.0.2...v0.0.6
 [0.0.2]: https://github.com/saibotsivad/glopen-routes/compare/v0.0.1...v0.0.2
 [0.0.1]: https://github.com/saibotsivad/glopen-routes/compare/v0.0.0...v0.0.1
 [0.0.0]: https://github.com/saibotsivad/glopen-routes/tree/v0.0.0
