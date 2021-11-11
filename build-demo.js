@@ -11,7 +11,7 @@ const HTML_FILE = './' + join('demo', `${NAME}.html`)
 const JS_FILE = './' + join('demo', `${NAME}.js`)
 const JSON_FILE = './' + join('demo', `${NAME}.json`)
 const YAML_FILE = './' + join('demo', `${NAME}.yaml`)
-const AJV_FILE = './' + join('demo', `${NAME}-ajv.cjs`)
+const AJV_FILE = './' + join('demo', `${NAME}-ajv.js`)
 
 const lines = []
 
