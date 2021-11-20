@@ -26,6 +26,12 @@ export const requestBody = {
 export const responses = {
 	201: {
 		description: 'The API token was successfully created.',
+		headers: {
+			Location: {
+				description: 'The canonical URL to the created API token.',
+				schema: { type: 'string' },
+			},
+		},
 		content: {
 			'application/json': {
 				schema: {

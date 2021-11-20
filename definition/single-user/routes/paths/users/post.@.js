@@ -21,8 +21,12 @@ export const responses = {
 	201: {
 		description: 'The user and session were created, and the user object and (optionally) session are returned.',
 		headers: {
-			'Set-Cookie': {
+			'set-cookie': {
 				description: 'The session cookie is set.',
+				schema: { type: 'string' },
+			},
+			Location: {
+				description: 'The canonical URL to the created user resource.',
 				schema: { type: 'string' },
 			},
 		},

@@ -22,6 +22,10 @@ Change categories are:
 ### Removed
 ### Security
 
+## [0.0.8] - 2021-11-19
+### Added
+- Added in a validator for the OpenAPI definition, and then added `Location` headers to all 201 responses, based on https://tools.ietf.org/html/rfc7231#section-4.3.3
+
 ## [0.0.3-0.0.7] - 2021-11-10
 ### Added
 - Routes for handling tasks and task groupings, owned by a single user.
@@ -46,6 +50,7 @@ Change categories are:
 - Created the base project.
 
 [Unreleased]: https://github.com/saibotsivad/glopen-routes/compare/v0.0.0...HEAD
+[0.0.8]: https://github.com/saibotsivad/glopen-routes/compare/v0.0.7...v0.0.8
 [0.0.3-0.0.7]: https://github.com/saibotsivad/glopen-routes/compare/v0.0.2...v0.0.7
 [0.0.2]: https://github.com/saibotsivad/glopen-routes/compare/v0.0.1...v0.0.2
 [0.0.1]: https://github.com/saibotsivad/glopen-routes/compare/v0.0.0...v0.0.1

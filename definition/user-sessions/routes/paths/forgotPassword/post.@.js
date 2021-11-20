@@ -38,7 +38,7 @@ export const requestBody = {
 }
 
 export const responses = {
-	201: {
+	204: {
 		description: 'The password reset request was accepted, and an was email sent. No body is returned.',
 	},
 	default: {

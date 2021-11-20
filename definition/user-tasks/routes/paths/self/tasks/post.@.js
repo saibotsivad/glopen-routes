@@ -23,6 +23,12 @@ export const requestBody = {
 export const responses = {
 	201: {
 		description: 'The task was created successfully',
+		headers: {
+			Location: {
+				description: 'The canonical URL to the created task resource.',
+				schema: { type: 'string' },
+			},
+		},
 		content: {
 			'application/json': {
 				schema: {
