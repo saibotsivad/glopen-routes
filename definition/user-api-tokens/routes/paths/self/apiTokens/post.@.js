@@ -2,7 +2,7 @@ export const summary = 'Create User API Token'
 
 export const description = `
 Create an API token for the currently logged-in user. This will generate a named token, which
-can be used for programmatic access to API endpoints which allow ie.
+can be used for programmatic access to API endpoints.
 `
 
 export const tags = [ 'userApiTokens' ]

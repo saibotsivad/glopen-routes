@@ -22,9 +22,10 @@ export default {
 
 The components are:
 
-- [`parameter: teamAdminId](./openapi/components/parameters/teamAdminId.@.js)
 - [`parameter: teamId`](./openapi/components/parameters/teamId.@.js)
+- [`parameter: teamAdminId](./openapi/components/parameters/teamAdminId.@.js)
 - [`schema: team`](./openapi/components/schemas/team.@.js)
+- [`schema: teamRelationship`](./openapi/components/schemas/teamRelationship.@.js)
 - [`schema: user`](./openapi/components/schemas/user.@.js) (modifies the single-user schema object)
 - [`tag: teams`](./openapi/tags.@.js)
 - [shared components](../_shared/README.md)
@@ -60,3 +61,15 @@ Add one or more admins to the team, if the requesting user also is an admin.
 Remove an admin from a team, if the requesting user is an admin.
 
 - `request.controller.team.removeAdmin: (request: Request) => null`
+
+##### [`POST /users/{userId}/relationships/teams`](./routes/paths/users/{userId}/relationships/teams/post.@.js)
+
+Add one or more users as members of the team, if the requesting user is an admin.
+
+- `await request.controller.team.addMembers: (request: Request) => { users: Array<TeamRelationship> }`
+
+##### [`DELETE /users/{userId}/relationships/teams/{teamId}`](./routes/paths/users/{userId}/relationships/teams/{teamId}/delete.@.js)
+
+Remove a user as a member of a team, if the requesting user is an admin.
+
+- `request.controller.team.removeMember: (request: Request) => null`
