@@ -35,3 +35,12 @@ export const all = options => ([
 	...userSessions(options),
 	...userTasks(options),
 ])
+
+export const allNoTeams = options => ([
+	...shared(),
+	...singleUser(options),
+	...userApiTokens(options),
+	...userManagement(options),
+	...userSessions(options),
+	...userTasks(options),
+])

@@ -33,6 +33,21 @@ export default {
 }
 ```
 
+If you want everything else but don't need team support, you can use `allNoTeams` instead of `all`.
+
+```js
+// glopen.config.js
+import { allNoTeams } from '@saibotsivad/glopen-routes'
+export default {
+	merge: [
+		...allNoTeams({
+			// Optional: apply the `api` option to all routes.
+			api: '/api/v1'
+		})
+	]
+}
+```
+
 ### Individual Definitions
 
 Each definition is a set of interdependent routes, and each is exported as a named function e.g. `singleUser`. See the [full list for details](./definition/README.md).
