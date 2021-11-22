@@ -4,6 +4,11 @@ export const description = 'Update properties for the task group.'
 
 export const tags = [ 'userTasks' ]
 
+export const security = [
+	{ cookie: [] },
+	{ api: [] },
+]
+
 export const parameters = [
 	{ $ref: '#/components/parameters/taskGroupId' },
 ]

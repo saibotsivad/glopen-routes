@@ -4,6 +4,11 @@ export const description = 'Create a task grouping that is owned by a single use
 
 export const tags = [ 'userTasks' ]
 
+export const security = [
+	{ cookie: [] },
+	{ api: [] },
+]
+
 export const requestBody = {
 	description: 'Create a task grouping.',
 	content: {

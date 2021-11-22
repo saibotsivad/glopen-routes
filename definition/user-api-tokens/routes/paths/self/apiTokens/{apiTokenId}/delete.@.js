@@ -4,13 +4,13 @@ export const description = 'Fully delete an API token owned by a user.'
 
 export const tags = [ 'userApiTokens' ]
 
-export const parameters = [
-	{ $ref: '#/components/parameters/apiTokenId' },
-]
-
 export const security = [
 	{ cookie: [] },
 	{ api: [] },
+]
+
+export const parameters = [
+	{ $ref: '#/components/parameters/apiTokenId' },
 ]
 
 export const responses = {

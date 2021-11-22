@@ -16,6 +16,7 @@ const make = (name, options) => ([
 
 export const shared = () => [{ dir: join(__dirname, '_shared', 'openapi'), ext: '@' }]
 export const singleUser = options => make('single-user', options)
+export const teams = options => make('teams', options)
 export const userApiTokens = options => make('user-api-tokens', options)
 export const userManagement = options => make('user-management', options)
 export const userSessions = options => make('user-sessions', options)
@@ -24,6 +25,7 @@ export const userTasks = options => make('user-tasks', options)
 export const all = options => ([
 	...shared(),
 	...singleUser(options),
+	...teams(options),
 	...userApiTokens(options),
 	...userManagement(options),
 	...userSessions(options),

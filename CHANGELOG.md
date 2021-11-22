@@ -22,6 +22,10 @@ Change categories are:
 ### Removed
 ### Security
 
+## [Unreleased]
+### Fixed
+- Some endpoints were missing security definitions.
+
 ## [0.0.8] - 2021-11-19
 ### Added
 - Added in a validator for the OpenAPI definition, and then added `Location` headers to all 201 responses, based on https://tools.ietf.org/html/rfc7231#section-4.3.3

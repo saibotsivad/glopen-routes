@@ -4,6 +4,11 @@ export const description = 'Toggle the task completion state, or update other pr
 
 export const tags = [ 'userTasks' ]
 
+export const security = [
+	{ cookie: [] },
+	{ api: [] },
+]
+
 export const parameters = [
 	{ $ref: '#/components/parameters/taskId' },
 ]

@@ -4,6 +4,11 @@ export const description = 'Get a single task group for a user.'
 
 export const tags = [ 'userTasks' ]
 
+export const security = [
+	{ cookie: [] },
+	{ api: [] },
+]
+
 export const parameters = [
 	{ $ref: '#/components/parameters/taskGroupId' },
 ]

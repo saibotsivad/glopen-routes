@@ -15,4 +15,12 @@ export const parameters = [
 	{ $ref: '#/components/parameters/userId' },
 ]
 
-export { default, responses } from '../../../../../single-user/routes/paths/self/get.@.js'
+export { responses } from '../../../../../single-user/routes/paths/self/get.@.js'
+
+export default async request => {
+	const { user } = await request.controller.user.get(request)
+	return {
+		status: 200,
+		body: { data: user },
+	}
+}

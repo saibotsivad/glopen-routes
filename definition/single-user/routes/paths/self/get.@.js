@@ -33,7 +33,7 @@ export const responses = {
 }
 
 export default async request => {
-	const { user } = await request.controller.user.get(request)
+	const { user } = await request.controller.user.getSelf(request)
 	return {
 		status: 200,
 		body: { data: user },

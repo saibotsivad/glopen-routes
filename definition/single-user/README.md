@@ -35,7 +35,7 @@ Create a new user.
 
 Get the user object of the logged-in user.
 
-- `request.controller.user.get: (request: Request) => { user: User }`
+- `request.controller.user.getSelf: (request: Request) => { user: User }`
 
 ##### [`PATCH /self`](./routes/paths/self/patch.@.js)
 
