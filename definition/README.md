@@ -24,8 +24,18 @@ Adds the ability for a single user to create and manage API tokens which represe
 
 Adds ability to create simple tasks (with names and long-form details) and task groupings that are owned and managed by a single user.
 
+## Team Routes
+
+### [Teams](./teams/README.md) `export: teams`
+
+Adds the ability to create and edit teams, as well as assign or remove administrators from teams.
+
 ## Administrative Routes
 
 ### [User Management](./user-management/README.md) `export: userManagement`
 
 Adds the ability to list and manage all users. Your application design will dictate role/permission requirements for these routes.
+
+### [User Roles](./user-rules/README.md) `export: userRoles`
+
+Adding roles is a complex security and design problem, so the user roles were extracted as their own opt-in schema modification to the main [single-user](./single-user/README.md) definitions.

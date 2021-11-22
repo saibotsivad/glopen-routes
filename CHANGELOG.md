@@ -23,6 +23,8 @@ Change categories are:
 ### Security
 
 ## [Unreleased]
+### Added
+- Routes to support teams.
 ### Fixed
 - Some endpoints were missing security definitions.
 
