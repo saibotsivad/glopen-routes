@@ -25,6 +25,7 @@ Change categories are:
 ## [Unreleased]
 ### Added
 - Routes to support teams.
+- Routes to support API tokens managed by a team.
 ### Fixed
 - Some endpoints were missing security definitions.
 

@@ -30,6 +30,10 @@ Adds ability to create simple tasks (with names and long-form details) and task 
 
 Adds the ability to create and edit teams, as well as assign or remove administrators from teams.
 
+### [Team API Tokens](./team-api-tokens/README.md) `export: teamApiTokens`
+
+Adds the ability for a team member to create and manage API tokens, which represent the team when used. Tokens have an optional expiration date expired, so you can manage forced key rotation as your application requirements dictate.
+
 ## Administrative Routes
 
 ### [User Management](./user-management/README.md) `export: userManagement`

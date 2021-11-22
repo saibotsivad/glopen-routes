@@ -10,7 +10,7 @@ export const security = [
 ]
 
 export const parameters = [
-	{ $ref: '#/components/parameters/teamId' },
+	{ $ref: '#/components/parameters/userId' },
 ]
 
 export const requestBody = {
