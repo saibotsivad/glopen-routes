@@ -22,7 +22,7 @@ Change categories are:
 ### Removed
 ### Security
 
-## [0.0.9](https://github.com/saibotsivad/glopen-routes/compare/v0.0.8...v0.0.9) - 2012-11-24
+## [0.0.9-0.0.10](https://github.com/saibotsivad/glopen-routes/compare/v0.0.8...v0.0.10) - 2012-11-24
 ### Added
 - Routes to support teams.
 - Routes to support API tokens managed by a team.

@@ -30,15 +30,15 @@ The components are:
 
 Initiate a password reset request via sending an email.
 
-- `request.controller.password.resetUnauthorized: (request: Request) => null`
+- `request.controller.user.resetPasswordUnauthorized: (request: Request) => null`
 
 ##### [`PATCH /forgotPassword`](./routes/paths/forgotPassword/patch.@.js)
 
 Use emailed single-use secret to finalize password reset.
 
-- `request.controller.password.resetUnauthorizedFinalize: (request: Request) => { cookie?: String } | undefined`
+- `request.controller.user.resetPasswordUnauthorizedFinalize: (request: Request) => { cookie?: String } | undefined`
 
-##### [`GET /logout`](./routes/paths/logout/get.@.js)
+##### [`GET /self/logout`](./routes/paths/self/logout/get.@.js)
 
 Mark current cookie session as invalid.
 
@@ -50,19 +50,19 @@ Provide login information to create a new session.
 
 - `request.controller.session.create: (request: Request) => { cookie: String, auth?: { href: String, meta: { expires: String } }`
 
-##### [`GET /sessions`](./routes/paths/sessions/get.@.js)
+##### [`GET /self/sessions`](./routes/paths/self/sessions/get.@.js)
 
 Retrieve a list of the logged-in user's sessions.
 
 - `request.controller.session.list: (request: Request) => { sessions: Array<Session> }`
 
-##### [`DELETE /sessions/{sessionId}`](./routes/paths/sessions/{sessionId}/delete.@.js)
+##### [`DELETE /self/sessions/{sessionId}`](./routes/paths/self/sessions/{sessionId}/delete.@.js)
 
 Mark specific cookie session as invalid.
 
 - `request.controller.session.remove: (request: Request) => null`
 
-##### [`PATCH /sessions/{sessionId}`](./routes/paths/sessions/{sessionId}/patch.@.js)
+##### [`PATCH /self/sessions/{sessionId}`](./routes/paths/self/sessions/{sessionId}/patch.@.js)
 
 Finalize login flow when 2FA is enabled.
 

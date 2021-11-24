@@ -33,8 +33,23 @@ export const requestBody = {
 }
 
 export const responses = {
-	204: {
-		description: 'The user was removed as an admin.',
+	200: {
+		description: 'The user was removed as an admin, and the remaining admins are returned on the response.',
+		content: {
+			'application/json': {
+				schema: {
+					type: 'object',
+					properties: {
+						data: {
+							type: 'array',
+							items: {
+								$ref: '#/components/schemas/userRelationship',
+							},
+						},
+					},
+				},
+			},
+		},
 	},
 	403: {
 		description: 'The requesting user is not an admin of the team, and therefore is not allowed to remove admins.',
@@ -52,8 +67,11 @@ export const responses = {
 }
 
 export default async request => {
-	await request.controller.team.removeAdmins(request)
+	const { admins } = await request.controller.team.removeAdmins(request)
 	return {
-		status: 204,
+		status: 200,
+		body: {
+			data: admins,
+		},
 	}
 }

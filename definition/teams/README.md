@@ -60,16 +60,16 @@ Add one or more admins to the team, if the requesting user also is an admin.
 
 Remove one or more admins from a team, if the requesting user is an admin.
 
-- `request.controller.team.removeAdmins: (request: Request) => null`
+- `request.controller.team.removeAdmins: (request: Request) => { admins: Array<UserRelationship> }`
 
 ##### [`POST /users/{userId}/relationships/teams`](./routes/paths/users/{userId}/relationships/teams/post.@.js)
 
-Add one or more users as members of the team, if the requesting user is an admin.
+Add a user as a member of one or more teams, if the requesting user is an admin of those teams.
 
-- `await request.controller.team.addMembers: (request: Request) => { users: Array<TeamRelationship> }`
+- `await request.controller.user.addTeamMemberships: (request: Request) => { teams: Array<TeamRelationship> }`
 
 ##### [`DELETE /users/{userId}/relationships/teams`](./routes/paths/users/{userId}/relationships/teams/delete.@.js)
 
-Remove one or more users as members of a team, if the requesting user is an admin.
+Remove a user as a member of one or more team, if the requesting user is an admin of those teams.
 
-- `request.controller.team.removeMembers: (request: Request) => null`
+- `request.controller.user.removeTeamMemberships: (request: Request) => { teams: Array<TeamRelationship> }`
