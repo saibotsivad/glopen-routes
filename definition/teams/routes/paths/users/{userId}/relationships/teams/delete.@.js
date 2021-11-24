@@ -10,9 +10,27 @@ export const security = [
 ]
 
 export const parameters = [
-	{ $ref: '#/components/parameters/teamId' },
 	{ $ref: '#/components/parameters/userId' },
 ]
+
+export const requestBody = {
+	description: 'Remove one or more users as members of a team using a list of JSON:API "relationship" objects. Every listed relationship will be removed.',
+	content: {
+		'application/json': {
+			schema: {
+				type: 'object',
+				properties: {
+					data: {
+						type: 'array',
+						items: {
+							$ref: '#/components/schemas/teamRelationship',
+						},
+					},
+				},
+			},
+		},
+	},
+}
 
 export const responses = {
 	204: {

@@ -10,8 +10,14 @@ import(`./demo/${NAME}.js`)
 		Enforcer(
 			// clone here to break out the "default" from the imports
 			JSON.parse(JSON.stringify(definition)),
-			// resolve references
-			{ fullResult: true },
+			{
+				// resolve references
+				fullResult: true,
+				componentOptions: {
+					// we're using OpenAPI 3.1.0 which allows DELETE requests to have bodies
+					requestBodyAllowedMethods: { delete: true },
+				},
+			},
 		)
 			.then(function ({ error, warning }) {
 				if (warning) console.log('Warnings:', warning)

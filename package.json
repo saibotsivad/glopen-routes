@@ -11,6 +11,7 @@
     "prebuild": "rm -rf demo && mkdir -p demo/swagger && ncp node_modules/swagger-editor-dist demo/swagger",
     "build": "run-p build:*",
     "build:all": "glopen -c ./config-all.glopen.js | ./build-demo.js all && node test-demo.js all",
+    "build:allNoTeams": "glopen -c ./config-allNoTeams.glopen.js | ./build-demo.js allNoTeams && node test-demo.js allNoTeams",
     "postbuild": "ncp index.html demo/index.html",
     "demo": "sirv demo --dev"
   },
