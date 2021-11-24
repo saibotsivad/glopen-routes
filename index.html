@@ -22,24 +22,19 @@
 			<a href="https://github.com/saibotsivad/glopen">glopen</a>,
 			as Swagger Editor demo pages so you can explore them more easily.
 		</p>
-		<ul>
-			<li>
-				<a href="./all.html"><code>all</code></a>
-				-
-				This is the entire set of routes, for easy grab-and-go.
-			</li>
-			<li>
-				<a href="./allNoTeams.html"><code>allNoTeams</code></a>
-				-
-				This is <em>almost</em> the entire set of routes, just excluding the teams-related routes.
-			</li>
-			<!--
-			<li>
-				<a href="./TODO.html">TODO</a>
-				-
-				DESCRIBE
-			</li>
-			-->
-		</ul>
+		<p>
+			<strong>Note:</strong> the SwaggerUI does not yet support OpenAPI 3.1.0, so if you
+			view the docs with that you'll need to manually tweak the top-level <code>openapi</code>
+			property to be <code>openapi: 3.0.0</code>. Some errors will show, since the versions
+			are not forward-compatible.
+		</p>
+
+		<h2><code>all</code></h2>
+		<p><a href="./all-swagger.html">SwaggerUI</a> | <a href="./all-redoc.html">Redoc</a></p>
+		<p>This is the entire set of routes, for easy grab-and-go.</p>
+
+		<h2><code>allNoTeams</code></h2>
+		<p><a href="./allNoTeams-swagger.html">SwaggerUI</a> | <a href="./allNoTeams-redoc.html">Redoc</a></p>
+		<p>This is <em>almost</em> the entire set of routes, just excluding the teams-related routes.</p>
 	</body>
 </html>
